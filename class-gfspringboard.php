@@ -53,10 +53,8 @@ class GFSpringboard extends GFAddOn {
 		
 		$post_url = add_query_arg( $params, esc_url_raw( $base_url ) );
 
-		GFCommon::log_debug( '$post_url => ' . print_r( $post_url, true ) );
-
 		$body = array(
-			'mail' => rgar( $entry, '1' )
+			'mail' => $this->get_mapped_field_value( 'springboardStandardFields_email_address', $form, $entry, $settings )
 			);
 
 		$request  = new WP_Http();
@@ -67,7 +65,7 @@ class GFSpringboard extends GFAddOn {
 		$response_message = wp_remote_retrieve_response_message( $response );
 
 		if ( 200 != $response_code ) {
-			return 'Some error occurred';
+			return 'Some error occurred...';
 		} else {
 			return $confirmation;
 		}
@@ -108,9 +106,33 @@ class GFSpringboard extends GFAddOn {
 						'name'              => 'formid',
 						'tooltip'           => esc_html__( 'The Form ID to submit the GF form data', 'gftospringboard' ),
 						'class'             => 'medium',
+						),
+					array(
+						'name'      => 'springboardStandardFields',
+						'label'     => esc_html__( 'Map Fields', 'gftospringboard' ),
+						'type'      => 'field_map',
+						'field_map' => $this->standard_fields_for_feed_mapping(),
+						'tooltip'   => '<h6>' . esc_html__( 'Map Fields', 'gftospringboard' ) . '</h6>' . esc_html__( 'Select which Gravity Form fields pair with their respective Springboard API service fields.', 'gftospringboard' )
 						),					
 					),
 				),
+			);
+	}
+
+	/**
+	 * Defines fields for mapping.
+	 *
+	 * @return array
+	 */
+	public function standard_fields_for_feed_mapping() {
+		return array(
+			array(
+				'name'          => 'email_address',
+				'label'         => esc_html__( 'Email Address', 'gftospringboard' ),
+				'required'      => true,
+				'field_type'    => array( 'email', 'hidden' ),
+				'default_value' => $this->get_first_field_by_type( 'email' ),
+				)
 			);
 	}
 
