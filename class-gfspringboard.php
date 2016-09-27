@@ -4,12 +4,12 @@ GFForms::include_addon_framework();
 
 class GFSpringboard extends GFAddOn {
 
-	protected $_version = GF_SIMPLE_ADDON_VERSION;
+	protected $_version = GF_TO_SPRINGBOARD_VERSION;
 	protected $_min_gravityforms_version = '1.9';
 	protected $_slug = 'gftospringboard';
 	protected $_path = 'gftospringboard/springboard.php';
 	protected $_full_path = __FILE__;
-	protected $_title = 'Gravity Forms To Springboard Add-On (Forum One)';
+	protected $_title = 'Springboard For Gravity Forms Add-On (Forum One)';
 	protected $_short_title = 'Springboard API';
 
 	private static $_instance = null;

@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Gravity Forms To Springboard Add-On (Forum One)
+Plugin Name: Springboard For Gravity Forms Add-On (Forum One)
 Plugin URI: https://github.com/forumone/wordpress-springboard-gravity-forms
 Description: An add-on to integrate Gravity Forms with the Springboard API and submit forms data.
 Version: 1.0.0
@@ -8,7 +8,7 @@ Author: Forum One
 Author URI: http://forumone.com/
 */
 
-define( 'GF_SIMPLE_ADDON_VERSION', '2.0' );
+define( 'GF_TO_SPRINGBOARD_VERSION', '1.0.0' );
 
 add_action( 'gform_loaded', array( 'GF_To_Springboard_Bootstrap', 'load' ), 5 );
 
