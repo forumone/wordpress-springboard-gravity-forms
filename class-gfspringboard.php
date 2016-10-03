@@ -65,10 +65,11 @@ class GFSpringboard extends GFAddOn {
 		$response_message = wp_remote_retrieve_response_message( $response );
 
 		if ( 200 != $response_code ) {
-			return 'Some error occurred...';
-		} else {
-			return $confirmation;
+			return 'Something went wrong, and we were unable to add your email address to our list. Please try again later.';
 		}
+
+
+		return $confirmation;
 
 	}
 
@@ -97,7 +98,7 @@ class GFSpringboard extends GFAddOn {
 						'label'             => esc_html__( 'Base URL', 'gftospringboard' ),
 						'type'              => 'text',
 						'name'              => 'baseurl',
-						'tooltip'           => esc_html__( 'The base URL for the Springboard API to communicate with. (Include either http:// or https://)', 'gftospringboard' ),
+						'tooltip'           => esc_html__( 'The base URL for the Springboard API to communicate with. (Include https://)', 'gftospringboard' ),
 						'class'             => 'medium',
 						),
 					array(
